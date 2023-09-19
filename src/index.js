@@ -27,4 +27,9 @@ rl.on("line", (input) => {
   }
 });
 
+rl.on("SIGINT", () => {
+  console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+  rl.close();
+});
+
 // if (answer === ".exit") rl.close();
