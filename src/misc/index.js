@@ -1,1 +1,1 @@
-export { getCurrentPath } from "./get-current-path.js";
+export { goodbye } from "./goodbye.js";
