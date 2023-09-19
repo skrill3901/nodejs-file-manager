@@ -1,20 +1,17 @@
 import { lstat, readdir } from "node:fs/promises";
 
 export const ls = async () => {
-  try {
-    const files = await readdir(process.cwd());
+  const paths = await readdir(process.cwd(), { withFileTypes: true });
 
-    const filesWithType = [];
+  const directories = paths
+    .filter((item) => item.isDirectory())
+    .sort((item1, item2) => item1 > item2)
+    .map((item) => ({ Name: item.name, Type: "directory" }));
 
-    for (const file of files) {
-      const isFile = (await lstat(file)).isFile();
-      const result = { name: file, type: isFile ? "file" : "directory" };
-      filesWithType.push(result);
-    }
+  const files = paths
+    .filter((item) => !item.isDirectory())
+    .sort((item1, item2) => item1 > item2)
+    .map((item) => ({ Name: item.name, Type: "file" }));
 
-    console.table(filesWithType);
-    // for (const file of files) console.log(file);
-  } catch (err) {
-    console.error(err);
-  }
+  console.table([...directories, ...files]);
 };
