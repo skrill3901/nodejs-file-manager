@@ -1,5 +1,5 @@
 import { checkPath, permanentMessage } from "../misc/index.js";
-import { cd, ls } from "./directory/index.js";
+import { cd, ls } from "./nwd/index.js";
 
 const INVALID_INPUT = "Invalid input";
 

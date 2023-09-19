@@ -4,7 +4,7 @@ import { homedir } from "os";
 
 import { goodbye, permanentMessage } from "./misc/index.js";
 
-import { ls } from "./modules/directory/ls.js";
+import { ls } from "./modules/nwd/ls.js";
 import { commands } from "./modules/commands.js";
 
 const getUsername = () => {
