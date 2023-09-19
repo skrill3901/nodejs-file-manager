@@ -1,5 +1,5 @@
 import { checkPath, permanentMessage } from "../misc/index.js";
-import { cd, ls } from "./nwd/index.js";
+import { cd, ls, up } from "./nwd/index.js";
 
 const INVALID_INPUT = "Invalid input";
 
@@ -25,6 +25,11 @@ export const commands = async (value) => {
       break;
     case "cd":
       cd(firstPath);
+      break;
+    case "up":
+      if (await checkPath("..")) {
+        up();
+      }
       break;
     default:
       console.log(INVALID_INPUT);
