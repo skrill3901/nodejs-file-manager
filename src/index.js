@@ -1,6 +1,7 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output, argv } from "process";
 import { getCurrentPath } from "./misc/index.js";
+import { ls } from "./modules/directory/ls.js";
 
 const getUsername = () => {
   const username = argv.find((arg) => arg.toString().startsWith("--username"));
@@ -16,15 +17,15 @@ const rl = readline.createInterface({ input, output });
 
 console.log(`Welcome to the File Manager, ${username}!`);
 
-const { __dirname } = getCurrentPath();
-console.log(`You are currently ${__dirname}`);
+// const { __dirname } = getCurrentPath();
+console.log(`You are currently ${process.cwd()}`);
 
 rl.on("line", (input) => {
   console.log(`Received: ${input}`);
   if (input === ".exit") {
     console.log(`Thank you for using File Manager, ${username}, goodbye!`);
     rl.close();
-  }
+  } else if (input === "ls") ls();
 });
 
 rl.on("SIGINT", () => {
